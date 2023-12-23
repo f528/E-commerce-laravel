@@ -30,4 +30,6 @@ route::get('/redirect',[HomeController::class,'redirect']);
 route::get('/', [HomeController::class, 'index']);
 
 route::get('/product', [AdminController::class, 'products']);
+route::get('/showproduct', [AdminController::class, 'showproducts']);
+route::post('/uploadproduct', [AdminController::class, 'uploadproduct']);
 

@@ -19,13 +19,22 @@
         font-size: 25px;
     }
 
-    .inputProduct div  {
+    .inputProduct div {
         padding: 5px;
         margin: 4px;
 
 
 
 
+    }
+
+    label {
+        display: inline-block;
+        width: 200px;
+    }
+
+    input {
+        color: black;
     }
 </style>
 
@@ -41,30 +50,58 @@
         <div class="container" align= "center">
             <h1 class="title">Add Product</h1>
             <div class="inputProduct">
-                <div>
-                    <label>Product Title</label>
-                    <input type="text" name="title" placeholder="Give a product title" required = "">
-                </div>
-                  <div>
-                    <label>Product Title</label>
-                    <input type="text" name="title" placeholder="Give a product title" required = "">
-                </div>
-                  <div>
-                    <label>Product Title</label>
-                    <input type="text" name="title" placeholder="Give a product title" required = "">
-                </div>
-                  <div>
-                    <label>Product Title</label>
-                    <input type="text" name="title" placeholder="Give a product title" required = "">
-                </div>
+                <form action="{{ url('uploadproduct') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div>
 
+                        @if (Session::has('message'))
 
+                            <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
+                                {{ Session::get('message') }}
+
+                            </div>
+                        @endif
+                    </div>
+                    <div>
+                        <label>Product Title</label>
+                        <input class="text-dark border-success" type="text" name="title"
+                            placeholder="Give a product title" required = "">
+                    </div>
+                    <div>
+                        <label>Price</label>
+                        <input class="text-dark border-success" type="number" name="price" placeholder="Give a price"
+                            required = "">
+                    </div>
+                    <div>
+                        <label>Description</label>
+                        <input class="text-dark border-success" type="text" name="description"
+                            placeholder="Give a description" required = "">
+                    </div>
+                    <div>
+                        <label>Quantity</label>
+                        <input class="text-dark border-success" type="number" name="Quantity"
+                            placeholder="Product uantity" required = "">
+                    </div>
+                    <div>
+                        <label>Product Image</label>
+                        <input type="file" name="image">
+                    </div>
+
+                    <button class="btn btn-success p-3 m-3 w-25 shadow-lg translate-x-6" type="submit">Send</button>
+
+                </form>
             </div>
 
 
         </div>
-        <!-- partial-javascript -->
+
+
+
+
+    </div>
+    <!-- partial-javascript -->
     </div>
     <!-- plugins:js -->
     @include('admin.js')
