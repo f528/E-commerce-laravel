@@ -33,3 +33,10 @@ route::get('/product', [AdminController::class, 'products']);
 route::get('/showproduct', [AdminController::class, 'showproducts']);
 route::post('/uploadproduct', [AdminController::class, 'uploadproduct']);
 
+route::get('/deleteproduct/{id}', [AdminController::class, 'deleteproduct']);
+
+
+
+
+route::get('/updateproduct/{id}', [AdminController::class, 'updateproduct']);
+route::post('/updateproduct/{id}', [AdminController::class, 'updateproduct']);

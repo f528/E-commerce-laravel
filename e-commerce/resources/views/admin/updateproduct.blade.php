@@ -1,8 +1,9 @@
-{{-- nav-authentication --}}
+
+{{--nav-authentication--}}
 <x-app-layout>
 
 </x-app-layout>
-{{-- nav-authentication --}}
+{{--nav-authentication--}}
 
 {{-- Container-dashboard========================== --}}
 
@@ -48,9 +49,9 @@
     <!-- partial-body-dashboard -->
     <div class="container-fluid page-body-wrapper ">
         <div class="container" align= "center">
-            <h1 class="title">Add Product</h1>
+            <h1 class="title">Update Product</h1>
             <div class="inputProduct">
-                <form wire:submit.prevent="update" action="{{ url('uploadproduct') }}" method="post" enctype="multipart/form-data">
+                <form wire:submit.prevent="update" action="{{ url('updateproduct',$data->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div>
 
@@ -61,31 +62,34 @@
                                 </div>
                             @endif
                         </div>
-                        
+
                     </div>
                     <div>
                         <label>Product Title</label>
                         <input class="text-dark border-success" type="text" name="title"
-                            placeholder="Give a product title" required = "">
+                            value="{{ $data->title }}" required = "">
                     </div>
                     <div>
                         <label>Price</label>
-                        <input class="text-dark border-success" type="number" name="price" placeholder="Give a price"
-                            required = "">
+                        <input class="text-dark border-success" type="number" name="price"  value="{{ $data->price }}" >
                     </div>
                     <div>
                         <label>Description</label>
                         <input class="text-dark border-success" type="text" name="description"
-                            placeholder="Give a description" required = "">
+                            value="{{ $data->description }}"  required = "">
                     </div>
                     <div>
                         <label>Quantity</label>
                         <input class="text-dark border-success" type="number" name="Quantity"
-                            placeholder="Product uantity" required = "">
+                         value="{{ $data->quantity }}" required = "">
+                    </div>
+                       <div>
+                        <label>Old Image</label>
+                       <img src="/image/{{ $data->image }}" alt="">
                     </div>
                     <div>
                         <label>Product Image</label>
-                        <input type="file" name="image">
+                        <input type="file" name="image"  value="{{ $data->image }}" >
                     </div>
 
                     <button class="btn btn-success p-3 m-3 w-25 shadow-lg translate-x-6" type="submit">Send</button>
@@ -102,6 +106,7 @@
     </div>
     <!-- partial-javascript -->
     </div>
+    <!-- partial-javascript -->
     <!-- plugins:js -->
     @include('admin.js')
 </body>
