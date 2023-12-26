@@ -50,7 +50,7 @@
         <div class="container" align= "center">
             <h1 class="title">Add Product</h1>
             <div class="inputProduct">
-                <form wire:submit.prevent="update" action="{{ url('uploadproduct') }}" method="post" enctype="multipart/form-data">
+                <form wire:submit.prevent="update" action="{{ url('create') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div>
 
@@ -61,7 +61,7 @@
                                 </div>
                             @endif
                         </div>
-                        
+
                     </div>
                     <div>
                         <label>Product Title</label>

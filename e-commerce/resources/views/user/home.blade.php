@@ -92,6 +92,14 @@
             </div>
             </div>
         </nav>
+
+                        <div>
+                            @if (session()->has('message'))
+                                <div class="alert alert-success">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                        </div>
     </header>
 
     <!-- Page Content -->

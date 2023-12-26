@@ -28,15 +28,18 @@ Route::middleware([
 
 route::get('/redirect',[HomeController::class,'redirect']);
 route::get('/', [HomeController::class, 'index']);
+route::get('/search', [HomeController::class, 'search']);
+
+
 
 route::get('/product', [AdminController::class, 'products']);
 route::get('/showproduct', [AdminController::class, 'showproducts']);
-route::post('/uploadproduct', [AdminController::class, 'uploadproduct']);
+route::post('/create', [AdminController::class, 'create']);
 
 route::get('/deleteproduct/{id}', [AdminController::class, 'deleteproduct']);
-
-
-
-
 route::get('/updateproduct/{id}', [AdminController::class, 'updateproduct']);
 route::post('/updateproduct/{id}', [AdminController::class, 'updateproduct']);
+
+
+route::post('/addcart/{id}', [HomeController::class, 'addcart']);
+
