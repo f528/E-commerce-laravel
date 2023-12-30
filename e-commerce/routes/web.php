@@ -42,4 +42,5 @@ route::post('/updateproduct/{id}', [AdminController::class, 'updateproduct']);
 
 
 route::post('/addcart/{id}', [HomeController::class, 'addcart']);
+route::post('/showcartt/', [HomeController::class, 'showcart']);
 
