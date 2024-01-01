@@ -51,7 +51,7 @@
                         <td style="padding: 20px ;border:1px solid;">
                             {{ Str::limit($item->description, 20, $end = '.......') }}</td>
                         <td style="padding: 20px">{{ $item->quantity }}</td>
-                        <td style="padding: 20px"><img height="100px" src="/public/image/{{ $item->image }}"
+                        <td style="padding: 20px ; width:100px: height:100px; "><img  src="/images/{{ $item->image }}"
                                 alt=""></td>
                         <td style="padding: 20px">
                             <a class="btn btn-success" href="{{ url('updateproduct', $item->id) }}">Update</a>

@@ -16,24 +16,24 @@ class AdminController extends Controller
     public function create(Request $request)
     {
 
-        $request->validate([
-            'title' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-            'quantity' => 'required',
-            'image' => 'required|image|mimes: jpeg,jpg,png,svg,gif',
+      $data =$request->all();
+
+
+
+       $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Assicurati che il campo 'image' sia il nome corretto del campo del tuo modulo
+            // Assicurati che il campo 'image' sia il nome corretto del campo del tuo modulo
 
         ]);
-     
-        Product::create($request->all());
+
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+
+
+        Product::create(['image' => $imageName,]);
         return redirect()->back()
-        ->with('message', 'Post created successfully.');
-
-        // $imagename = time() . '-' . $image->getClientOriginalExtension();
-        // $request->file->move('image', $imagename);
-        // $data->image->$imagename;
-
-
+            ->with('message', 'Post created successfully.');
     }
 
 

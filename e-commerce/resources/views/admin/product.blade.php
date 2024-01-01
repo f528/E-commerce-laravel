@@ -80,7 +80,7 @@
                     </div>
                     <div>
                         <label>Quantity</label>
-                        <input class="text-dark border-success" type="number" name="Quantity"
+                        <input class="text-dark border-success" type="number" name="quantity"
                             placeholder="Product uantity" required = "">
                     </div>
                     <div>

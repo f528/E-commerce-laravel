@@ -26,7 +26,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-route::get('/redirect',[HomeController::class,'redirect']);
+route::get('/redirect',[HomeController::class,'prodotto']);
 route::get('/', [HomeController::class, 'index']);
 route::get('/search', [HomeController::class, 'search']);
 
@@ -42,5 +42,8 @@ route::post('/updateproduct/{id}', [AdminController::class, 'updateproduct']);
 
 
 route::post('/addcart/{id}', [HomeController::class, 'addcart']);
-route::post('/showcartt/', [HomeController::class, 'showcart']);
+route::get('/showcart', [HomeController::class, 'showcart']);
+
+
+route::get('/deletcart/{id}', [HomeController::class, 'deletcart']);
 

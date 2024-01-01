@@ -8,8 +8,9 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 
-    <title>Sixteen Clothing HTML Template</title>
+    <title>marketplace</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +29,7 @@
 
 <body>
 
+
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -43,7 +45,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <h2>Sixteen <em>Clothing</em></h2>
+                    <h2>add to cart <em>Chekout</em></h2>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +76,7 @@
                             @if (Route::has('login'))
                                 @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('showcart') }}">Cart[{{ $count }}] <i class="fas fa-shopping-cart"></i></a>
+                                <a class="nav-link" href="{{ url('showcart') }}">Cart {{ $count }} <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                             </li>
 
 
@@ -94,6 +96,8 @@
                 </ul>
             </div>
             </div>
+
+
         </nav>
 
         <div>
@@ -104,23 +108,35 @@
             @endif
         </div>
     </header>
-<div style="padding:100%;" align="center">
-     <table>
-        <tr style="background-color: grey;">
-            <td style="padding:10px; font-size:20px;">Product Name</td>
-            <td style="padding:10px; font-size:20px;">Quantity</td>
-            <td style="padding:10px; font-size:20px;">Price</td>
-        </tr>
-        @for ($cart as $carts )
-          <tr style="background-color: balck;">
-            <td style="padding:20px; color:white;">{{ $cart->product_title }}</td>
-            <td style="padding:20px; color:white;">{{ $cart->qauntity }}</td>
-            <td style="padding:20px; color:white;"> {{ $cart->price }}</td>
-        </tr>
-        @endfor
 
-    </table>
-</div>
+<br>
+
+
+
+    <div class="container mt-75 p-5">
+<br>
+            <table>
+                <tr style="background-color: rgb(98, 227, 227);">
+                    <td style="padding:10px; font-size:20px;">Product Name</td>
+                    <td style="padding:10px; font-size:20px;">Quantity</td>
+                    <td style="padding:10px; font-size:20px;">Price</td>
+                    <td style="padding:10px; font-size:20px;">Action</td>
+                </tr>
+                @foreach ($cart as $carts)
+                    <tr style="background-color: balck;">
+                        <td style="padding:20px; color:rgb(14, 12, 12);">{{ $carts->product_title }}</td>
+                        <td style="padding:20px; color:white;">{{ $carts->qauntity }}</td>
+                        <td style="padding:20px; color:rgb(227, 218, 218)66, 154, 154);"> {{ $carts->price }}</td>
+                        <td class="btn btn-danger bg-black" > <a href="{{ url('deletcart',$carts->id) }}">Delete</a></td>
+                    </tr>
+                @endforeach
+
+
+
+            </table>
+
+
+    </div>
 
 
 

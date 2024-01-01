@@ -10,31 +10,51 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function redirect()
+    public function prodotto()
     {
+        $data = Product::all();
         $usertype = Auth::user()->usertype;
-       
+
         if ($usertype == '1') {
             return view('admin.admin');
         } else {
-            return view('user.home');
+            return view('user.home',compact('data'));
         }
     }
 
+    // public function index()
+    // {
+    //     if (Auth::id()) {
+
+    //         return redirect('redirect');
+    //     } else {
+    //         $data = Product::latest()->paginate(6);
+
+
+    //         $user= auth()->user();
+
+    //         $count = Cart::where('phone',$user->phone)->count();
+    //         dd($count);
+
+    //         return view('user.home',compact('data','count'));
+    //     }
+    // }
     public function index()
     {
-        if (Auth::id()) {
 
+        if (Auth::check()) {
             return redirect('redirect');
         } else {
             $data = Product::latest()->paginate(6);
 
 
-            $user= auth()->user();
+            $user = auth()->user();
 
-            $count = Cart::where('phone', $user->phone)->count();
 
-            return view('user.home',compact('data','count'));
+            $count = Cart::where( 'phone')->count();
+
+
+            return view('user.home', compact('data','count'));
         }
     }
 
@@ -73,8 +93,17 @@ class HomeController extends Controller
     }
     public function showcart(){
         $user = auth()->user();
-        $cart = Cart::where('phone',$user->phone)->get;
-        $count = Cart::where('phone', $user->phone)->count();
+
+        $cart = Cart::all();
+
+        $count = Cart::all()->count();
+
        return view('user.showcart',compact('count','cart'));
+    }
+    public function deletcart($id){
+
+        $cart = Cart::find($id);
+        $cart->delete();
+        return redirect()->back()->with('message','product deleted successfully');
     }
 }

@@ -28,16 +28,18 @@
             @foreach ($data as $item)
                 <div class="col-md-4">
                     <div class="product-item">
-                        <a href="#"><img src=""></a>
+
+                        <img  src="/images/{{ $item->image }}">
                         <div class="down-content">
                             <a href="#">
                                 <h4>T{{ $item->title }}</h4>
                             </a>
+
                             <h6>{{ $item->price }} $</h6>
                             <p>{{ $item->description }}</p>
                             <h4>Quantity : {{ $item->quantity }}</h4>
 
-                            <form action="{{ url('addcart',$data->id) }}" method="POST">
+                            <form action="{{ url('addcart',$item->id) }}" method="POST">
                                 @csrf
                                 <input type="number" value="1" min="1" class="form-control w-25 m-1 " name="quantity">
                                 <input type="submit"  class="btn btn-primary" value="Add Cart">
