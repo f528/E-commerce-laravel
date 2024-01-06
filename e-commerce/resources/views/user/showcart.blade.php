@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 
     <title>marketplace</title>
 
@@ -76,12 +76,17 @@
                             @if (Route::has('login'))
                                 @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('showcart') }}">Cart {{ $count }} <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                <a class="nav-link" href="{{ url('showcart') }}">Cart {{ $count }} <i
+                                        class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                             </li>
 
+                            <li class="nav-item">
+                                <x-app-layout>
 
+                                </x-app-layout>
+                            </li>
 
-                            <li><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
+                            {{-- <li><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li> --}}
                         @else
                             <li><a class="nav-link" href="{{ route('login') }}">Log in</a></li>
                             @if (Route::has('register'))
@@ -109,31 +114,53 @@
         </div>
     </header>
 
-<br>
+    <br>
 
 
 
     <div class="container mt-75 p-5">
-<br>
-            <table>
-                <tr style="background-color: rgb(98, 227, 227);">
-                    <td style="padding:10px; font-size:20px;">Product Name</td>
-                    <td style="padding:10px; font-size:20px;">Quantity</td>
-                    <td style="padding:10px; font-size:20px;">Price</td>
-                    <td style="padding:10px; font-size:20px;">Action</td>
-                </tr>
+        <br>
+        <table>
+            <tr style="background-color: rgb(98, 227, 227);">
+                <td style="padding:10px; font-size:20px;">Product Name</td>
+                <td style="padding:10px; font-size:20px;">Quantity</td>
+                <td style="padding:10px; font-size:20px;">Price</td>
+                <td style="padding:10px; font-size:20px;">Action</td>
+            </tr>
+            <form action="{{ url('order') }}" method="POST">
+                @csrf
                 @foreach ($cart as $carts)
                     <tr style="background-color: balck;">
-                        <td style="padding:20px; color:rgb(14, 12, 12);">{{ $carts->product_title }}</td>
-                        <td style="padding:20px; color:white;">{{ $carts->qauntity }}</td>
-                        <td style="padding:20px; color:rgb(227, 218, 218)66, 154, 154);"> {{ $carts->price }}</td>
-                        <td class="btn btn-danger bg-black" > <a href="{{ url('deletcart',$carts->id) }}">Delete</a></td>
+                        <td style="padding:20px; color:rgb(14, 12, 12);">
+                            <input type="text" name="product_name[]" value="  {{ $carts->product_title }}"
+                                hidden="">
+                            {{ $carts->product_title }}
+                        </td>
+
+                        <td style="padding:20px; color:white;">
+                            <input type="text" name="product_quantity[]" value="  {{ $carts->quantity }}"
+                                hidden="">
+
+                            {{ $carts->qauntity }}
+                        </td>
+
+                        <td style="padding:20px; color:rgb(227, 218, 218)66, 154, 154);">
+                            <input type="text" name="product_price[]" value="  {{ $carts->price }}" hidden="">
+                            {{ $carts->price }}
+                        </td>
+
+                        <td class="btn btn-danger bg-black"> <a href="{{ url('deletcart', $carts->id) }}">Delete</a>
+                        </td>
                     </tr>
                 @endforeach
+            </form>
 
 
 
-            </table>
+
+        </table>
+
+        <button class="btn btn-success"> Confirm Order</button>
 
 
     </div>

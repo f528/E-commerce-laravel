@@ -21,7 +21,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/redirect', function () {
         return view('dashboard');
     })->name('dashboard');
 });
@@ -46,4 +46,7 @@ route::get('/showcart', [HomeController::class, 'showcart']);
 
 
 route::get('/deletcart/{id}', [HomeController::class, 'deletcart']);
+
+route::post('/order', [HomeController::class, 'confirmOrder']);
+
 

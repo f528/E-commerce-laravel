@@ -46,13 +46,14 @@
                     <h2>Sixteen <em>Clothing</em></h2>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
+                {{-- <div class=" collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto"> --}}
+
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home
+                            <a class="nav-link" href="">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
@@ -61,9 +62,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="products.html">Our Products</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About Us</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact Us</a>
                         </li>
@@ -74,37 +77,50 @@
                             @if (Route::has('login'))
                                 @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('showcart') }}">Cart <i class="fas fa-shopping-cart"></i></a>
+                                <a class="nav-link" href="{{ url('showcart') }}">Cart <i
+                                        class="fas fa-shopping-cart"></i></a>
+                            </li>
+
+                            <li class="nav-item">
+                                 <x-app-layout>
+                                  </x-app-layout>
                             </li>
 
 
 
-                            <li><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
+                            {{-- <li><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li> --}}
                         @else
-                            <li><a class="nav-link" href="{{ route('login') }}">Log in</a></li>
+                            <li>
+                                <a class="nav-link" href="{{ route('login') }}">Log in</a>
+                            </li>
+
                             @if (Route::has('register'))
-                                <li><a class="nav-link"href="{{ route('register') }}">Register</a></li>
+                                <li>
+                                    <a class="nav-link"href="{{ route('register') }}">Register</a>
+                                </li>
                             @endif
+
                         @endauth
-                </div>
-                @endif
-                </li>
 
+                        @endif
+                        </li>
 
+                  </div>
                 </ul>
             </div>
-            </div>
+        </div>
         </nav>
 
-        <div>
-            @if (session()->has('message'))
-                <div class="alert alert-success">
-                    {{ session('message') }}
-                </div>
-            @endif
-        </div>
     </header>
 
+
+    <div>
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="banner header-text">
